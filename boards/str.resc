@@ -1,0 +1,9 @@
+# Steering wheel (STR) on a virtual STM32F103
+using sysbus
+mach create "str"
+machine LoadPlatformDescription @platforms/cpus/stm32f103.repl
+machine PyDevFromFile @peripherals/stm32f1_rcc.py 0x40021000 0x400 True "rcc"
+machine LoadPlatformDescriptionFromString "bitband: Miscellaneous.BitBanding @ sysbus <0x42000000, +0x2000000> { peripheralBase: 0x40000000 }"
+
+
+sysbus LoadELF @/home/gregorybian/Desktop/UBC_Solar/firmware_v4/firmware/components/str/build/Debug/str.elf
